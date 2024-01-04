@@ -222,12 +222,6 @@
                         </el-scrollbar>
                     </template>
                 </CardWithHeader>
-
-                <CardWithHeader :header="$t('home.app')" style="margin-top: 20px">
-                    <template #body>
-                        <App ref="appRef" />
-                    </template>
-                </CardWithHeader>
             </el-col>
         </el-row>
 
@@ -239,7 +233,7 @@
 import ConfirmDialog from '@/components/confirm-dialog/index.vue';
 import { onMounted, onBeforeUnmount, ref, reactive } from 'vue';
 import Status from '@/views/home/status/index.vue';
-import App from '@/views/home/app/index.vue';
+// import App from '@/views/home/app/index.vue';
 import VCharts from '@/components/v-charts/index.vue';
 import CardWithHeader from '@/components/card-with-header/index.vue';
 import i18n from '@/lang';
@@ -248,7 +242,7 @@ import { dateFormatForSecond, computeSize } from '@/utils/util';
 import { useRouter } from 'vue-router';
 import { loadBaseInfo, loadCurrentInfo, systemRestart } from '@/api/modules/dashboard';
 import { getIOOptions, getNetworkOptions } from '@/api/modules/monitor';
-import { getSettingInfo, loadUpgradeInfo } from '@/api/modules/setting';
+import { getSettingInfo } from '@/api/modules/setting';
 import { GlobalStore } from '@/store';
 import { MsgSuccess } from '@/utils/message';
 const router = useRouter();
@@ -257,7 +251,7 @@ const globalStore = GlobalStore();
 const statusRef = ref();
 const restartType = ref();
 const confirmDialogRef = ref();
-const appRef = ref();
+// const appRef = ref();
 
 const isSafety = ref();
 
@@ -387,7 +381,7 @@ const onLoadBaseInfo = async (isInit: boolean, range: string) => {
     await onLoadCurrentInfo();
     isStatusInit.value = false;
     statusRef.value.acceptParams(currentInfo.value, baseInfo.value, isStatusInit.value);
-    appRef.value.acceptParams();
+    // appRef.value.acceptParams();
     if (isInit) {
         timer = setInterval(async () => {
             if (isActive.value && !globalStore.isOnRestart) {
@@ -535,13 +529,8 @@ const hideEntrance = () => {
     globalStore.setShowEntranceWarn(false);
 };
 
-const loadUpgradeStatus = async () => {
-    const res = await loadUpgradeInfo();
-    if (res.data) {
-        globalStore.hasNewVersion = true;
-    } else {
-        globalStore.hasNewVersion = false;
-    }
+const loadUpgradeStatus = () => {
+    globalStore.hasNewVersion = false;
 };
 
 const loadSafeStatus = async () => {

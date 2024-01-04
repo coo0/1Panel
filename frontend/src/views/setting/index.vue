@@ -19,17 +19,5 @@ const buttons = [
         label: i18n.global.t('setting.safe'),
         path: '/settings/safe',
     },
-    {
-        label: i18n.global.t('setting.backupAccount'),
-        path: '/settings/backupaccount',
-    },
-    {
-        label: i18n.global.t('setting.snapshot'),
-        path: '/settings/snapshot',
-    },
-    {
-        label: i18n.global.t('setting.about'),
-        path: '/settings/about',
-    },
 ];
 </script>

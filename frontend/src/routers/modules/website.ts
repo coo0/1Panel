@@ -31,15 +31,6 @@ const webSiteRouter = {
             },
         },
         {
-            path: '/websites/ssl',
-            name: 'SSL',
-            component: () => import('@/views/website/ssl/index.vue'),
-            meta: {
-                title: 'menu.ssl',
-                requiresAuth: false,
-            },
-        },
-        {
             path: '/websites/runtimes/php',
             name: 'PHP',
             component: () => import('@/views/website/runtime/php/index.vue'),
